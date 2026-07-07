@@ -84,8 +84,7 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    background-image:url('https://images.unsplash.com/photo-1754146073321-fd3f4aa9ca1a?fm=jpg&q=80&w=2400&auto=format&fit=crop');
-    background-position:center 40%;
+    background:#0A0A0A;
     min-height:100vh; align-items:center;
   }
   .hero::before{
@@ -120,6 +119,30 @@
   }
   .scrolldown .line{ width:1px; height:32px; background:var(--text-dim); animation:pulse 2.4s infinite; }
   @keyframes pulse{ 0%,100%{opacity:.25;} 50%{opacity:.9;} }
+
+
+  /* ---------- HERO VIDEO LOOP ---------- */
+  .hero-videos{ position:absolute; inset:0; z-index:0; overflow:hidden; background:#0A0A0A; }
+  .hero-videos video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    will-change:opacity;
+  }
+  .hero-videos .hv-a{ animation:fadeA 16s ease-in-out infinite; }
+  .hero-videos .hv-b{ animation:fadeB 16s ease-in-out infinite; }
+  @keyframes fadeA{
+    0%, 43%  { opacity:1; }
+    50%, 93% { opacity:0; }
+    100%     { opacity:1; }
+  }
+  @keyframes fadeB{
+    0%, 43%  { opacity:0; }
+    50%, 93% { opacity:1; }
+    100%     { opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-videos video{ animation:none; }
+    .hero-videos .hv-b{ opacity:0; }
+  }
 
   /* ---------- STAT PHOTO BAND ---------- */
   .stat-photo{
@@ -262,6 +285,13 @@
   }
   .academy-link:hover{ text-decoration:underline; }
 
+  .academy-logo{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:#FFFFFF; border-radius:10px; padding:14px 20px;
+    margin-bottom:26px; max-width:260px;
+  }
+  .academy-logo img{ width:100%; height:auto; display:block; }
+
   /* ---------- PARTNERS ---------- */
   .partners{ background:var(--bg); }
   .partner-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -346,6 +376,16 @@
 
 <!-- HERO -->
 <header class="photo-section hero">
+  <div class="hero-videos" aria-hidden="true">
+    <video class="hv hv-a" autoplay muted loop playsinline preload="auto"
+           poster="https://images.pexels.com/videos/5973234/pexels-photo-5973234.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920&amp;h=1080">
+      <source src="https://videos.pexels.com/video-files/5973234/5973234-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+    <video class="hv hv-b" autoplay muted loop playsinline preload="auto"
+           poster="https://images.pexels.com/videos/854631/free-video-854631.jpg?auto=compress&amp;cs=tinysrgb&amp;w=1920&amp;h=1080">
+      <source src="https://videos.pexels.com/video-files/854631/854631-hd_1920_1080_30fps.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="wrap">
     <span class="eyebrow">Asan Frontier Academy · Social Innovation Lab · Team 3</span>
     <h1 class="brand-title">Good <em>Hands</em> Club</h1>
@@ -577,6 +617,9 @@
   <div class="wrap">
     <div class="academy-grid">
       <div class="reveal">
+        <a class="academy-logo" href="https://asan-nanum.org/eng/" target="_blank" rel="noopener" aria-label="Asan Nanum Foundation">
+          <img src="assets/logos/asan-nanum.png" alt="Asan Nanum Foundation logo">
+        </a>
         <span class="eyebrow">About</span>
         <h2 style="margin-top:18px;">The Asan <em>Frontier</em> Academy</h2>
       </div>
